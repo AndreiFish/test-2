@@ -1,13 +1,7 @@
-const titleProject = 'Оценка стоимости';
-const screensValue = 'шаблонные, с уникальным дизайном, с анимациями';
-const screenPrice = 5000;
-const percentage = 5;
-const fullPrice = 50000;
-const responsive = true;
+let x = 5;
 
-console.log(titleProject);
-console.log(screensValue);
-console.log(screenPrice, 'цена реализации одного экрана');
-console.log(percentage, 'процент отката подрядчику');
-console.log(fullPrice, 'желаемая сумма зароботка с проекта');
-console.log(responsive);
+if (x > 10) {
+    console.log('very nice');
+} else {
+    console.log('very bad')
+}
