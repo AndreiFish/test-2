@@ -20,11 +20,11 @@ const servicePrice2 = prompt('Сколько будет стоить этот в
 console.log(servicePrice2, '(стоимость сервис 2)');
 
 const screenPrice = 20000;
-fullPrice = screenPrice + +servicePrice1 + +servicePrice2
+let fullPrice = screenPrice + +servicePrice1 + +servicePrice2
 console.log(fullPrice, '(общая стоимость)');
 
-let x = 10
-servicePercentPrice = fullPrice - (fullPrice * x / 100)
+let percentage = 10
+let servicePercentPrice = fullPrice - (fullPrice * percentage / 100)
 console.log(Math.ceil(servicePercentPrice), '(стоимость с вычетом комиссии)');
 
 
@@ -55,9 +55,10 @@ console.log(newTitle, '(функция, название проекта)')
 
 
 const getServicePercentPrices = function () {
-    return fullPrice - servicePercentPrice
+    return fullPrice - (fullPrice * percentage / 100)
 }
 servicePercentPrice = getServicePercentPrices();
+console.log(Math.ceil(servicePercentPrice), '(функция, стоимость с вычетом комиссии)');
 
 
 const getRollbackMessage = function () {
