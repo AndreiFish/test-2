@@ -1,86 +1,86 @@
-const screenPrice = 20000;
+let screenPrice;
 let percentage = 10;
 let allServicePrices;
-let newTitle = '';
+let newTitle = "";
 let titleProject;
 let screensValue;
 let responsive;
-let service1;
-let service2;
 
-
-
-const checkIsNumber = function (x) {
-    return !isNaN(parseFloat(x)) && isFinite(x)
-}
+const checkIsNumber = function (value) {
+    return !isNaN(parseFloat(value)) && isFinite(value);
+};
 
 const asking = function () {
-    titleProject = prompt('название проекта?');
-    screensValue = prompt('шаблонные, с уникальным дизайном, с анимациями');
-    responsive = prompt('нужен ли респонсивный сайт?');
+    titleProject = prompt("Project name");
+    screensValue = prompt("Template, unique design, animations");
+    responsive = prompt("Is responsiveness needed?");
+};
+
+while (true) {
+    let input = prompt("Enter screen price:");
+    if (checkIsNumber(input) && input.trim() !== "" && input !== null) {
+        screenPrice = parseFloat(input);
+        break;
+    }
+    alert("Please enter a valid number!");
 }
 
 const getAllServicePrices = function () {
-    let sum = 0;
-
+    let total = 0;
     for (let i = 0; i < 2; i++) {
+        let service = prompt(`Enter additional service ${i + 1}:`);
+        let servicePrice;
 
-        if (i === 0) {
-            service1 = promt('Какой сервис нужен?', 'Сервис 1')
-        } else if (i === 1) {
-            service2 = promt('Какой сервис нужен?', 'Сервис 2')
+        while (true) {
+            let priceInput = prompt(`How much does '${service}' cost?`);
+            if (
+                checkIsNumber(priceInput) &&
+                priceInput.trim() !== "" &&
+                priceInput !== null
+            ) {
+                servicePrice = parseFloat(priceInput);
+                break;
+            }
+            alert("Please enter a valid number!");
         }
-
-        let textFromPromt = '';
-        while (!checkIsNumber(textFromPromt) || textFromPromt.trim() === '' || textFromPromt === null) {
-            textFromPromt = promt('Сколько это будет стоить?')
-        }
-        sum = sum + Number(textFromPromt)
+        total += servicePrice;
     }
-    return sum
-}
+    return total;
+};
 
 function getFullPrice() {
-    return screenPrice + allServicePrices
+    return screenPrice + allServicePrices;
 }
 
-const getServicePercentPrices = function () {
-    return fullPrice - (fullPrice * percentage / 100)
-}
+const getServicePercentPrices = function (price) {
+    return price - price * (percentage / 100);
+};
 
 const getTitle = function () {
-    return titleProject[0].toUpperCase() + titleProject.slice(1).toLocaleLowerCase()
-}
-
-
-
-
-if (fullPrice > 50000) {
-    console.log('сделаем скидку в 10 %')
-} else if (fullPrice > 20000 && fullPrice < 50000) {
-    console.log('сделаем скидку 5%')
-} else if (fullPrice < 20000 && fullPrice > 0) {
-    console.log('скидка не предусмотрена')
-} else if (fullPrice < 0) {
-    console.log('Что то пошло не так')
-} else if (fullPrice === 0 || fullPrice === 20000 || fullPrice === 50000) {
-    console.log('Сектор приз')
-}
-
-
-
+    return titleProject[0].toUpperCase() + titleProject.slice(1).toLowerCase();
+};
 
 asking();
 allServicePrices = getAllServicePrices();
-fullPrice = getFullPrice();
-servicePercentPrice = getServicePercentPrices();
+let fullPrice = getFullPrice();
+let servicePercentPrice = getServicePercentPrices(fullPrice);
 newTitle = getTitle();
 
-console.log(titleProject, '(название проекта)');
-console.log(screensValue, '(тип проекта)');
-console.log(responsive, '(респонсивный сайт)');
-console.log(service1, '(сервис 1)');
-console.log(servicePrice1, '(стоимость сервис 1)');
-console.log(service2, '(сервис 2)');
-console.log(servicePrice2, '(стоимость сервис 2)');
-console.log(Math.ceil(servicePercentPrice), '(функция, стоимость с вычетом комиссии)')
+if (fullPrice > 50000) {
+    console.log("10% discount");
+} else if (fullPrice >= 20000) {
+    console.log("5% discount");
+} else if (fullPrice > 0) {
+    console.log("No discount");
+} else if (fullPrice === 0) {
+    console.log("Free");
+} else {
+    console.log("Error: negative price");
+}
+
+console.log(titleProject);
+console.log(screensValue);
+console.log(responsive);
+console.log(screenPrice);
+console.log(allServicePrices);
+console.log(Math.ceil(servicePercentPrice));
